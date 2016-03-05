@@ -3,24 +3,26 @@ from conans.tools import download, unzip
 import os
 
 
-class CMakeForwardArgumentsConan(ConanFile):
-    name = "cmake-opt-arg-parsing"
+class CMakeSpacifyListConan(ConanFile):
+    name = "cmake-spacify-list"
     version = "master"
     generators = "cmake"
-    requires = ("cmake-include-guard/master@smspillaz/cmake-include-guard", )
-    url = "http://github.com/polysquare/cmake-opt-arg-parsing"
+    requires = (
+        "cmake-include-guard/master@smspillaz/cmake-include-guard",
+        "cmake-opt-arg-parsing/master@smspillaz/cmake-opt-arg-parsing"
+    )
+    url = "http://github.com/polysquare/cmake-spacify-list"
     license = "MIT"
-    exports = "*"
 
     def source(self):
-        zip_name = "cmake-opt-arg-parsing-master.zip"
+        zip_name = "cmake-spacify-list-master.zip"
         download("https://github.com/polysquare/" +
-                 "cmake-opt-arg-parsing/archive/master.zip", zip_name)
+                 "cmake-spacify-list/archive/master.zip", zip_name)
         unzip(zip_name)
         os.unlink(zip_name)
 
     def package(self):
         self.copy(pattern="*.cmake",
-                  dst="cmake/cmake-opt-arg-parsing",
+                  dst="cmake/cmake-spacify-list",
                   src=".",
                   keep_path=True)

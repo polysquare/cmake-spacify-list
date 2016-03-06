@@ -2,27 +2,29 @@ from conans import ConanFile
 from conans.tools import download, unzip
 import os
 
+VERSION = "0.0.1"
 
-class CMakeSpacifyListConan(ConanFile):
+
+class CMakeSpacifyList(ConanFile):
     name = "cmake-spacify-list"
-    version = "master"
+    version = os.environ.get("CONAN_VERSION_OVERRIDE", VERSION)
+    requires = ("cmake-include-guard/master@smspillaz/cmake-include-guard",
+                "cmake-opt-arg-parsing/master@smspillaz/cmake-opt-arg-parsing")
     generators = "cmake"
-    requires = (
-        "cmake-include-guard/master@smspillaz/cmake-include-guard",
-        "cmake-opt-arg-parsing/master@smspillaz/cmake-opt-arg-parsing"
-    )
     url = "http://github.com/polysquare/cmake-spacify-list"
-    license = "MIT"
+    licence = "MIT"
 
     def source(self):
-        zip_name = "cmake-spacify-list-master.zip"
-        download("https://github.com/polysquare/" +
-                 "cmake-spacify-list/archive/master.zip", zip_name)
+        zip_name = "cmake-spacify-list.zip"
+        download("https://github.com/polysquare/"
+                 "cmake-spacify-list/archive/{version}.zip"
+                 "".format(version="v" + VERSION),
+                 zip_name)
         unzip(zip_name)
         os.unlink(zip_name)
 
     def package(self):
         self.copy(pattern="*.cmake",
                   dst="cmake/cmake-spacify-list",
-                  src=".",
+                  src="cmake-spacify-list-" + VERSION,
                   keep_path=True)

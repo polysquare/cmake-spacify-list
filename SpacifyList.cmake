@@ -3,12 +3,10 @@
 # Spacify cmake lists so that they can be printed directly into text files.
 #
 # See /LICENCE.md for Copyright information
-include (conanbuildinfo.cmake)
-
-include ("smspillaz/cmake-include-guard/IncludeGuard")
+include ("cmake/cmake-include-guard/IncludeGuard")
 cmake_include_guard (SET_MODULE_PATH)
 
-include ("smspillaz/cmake-opt-arg-parsing/OptimizedParseArguments")
+include ("cmake/cmake-opt-arg-parsing/OptimizedParseArguments")
 
 # cmake_spacify_list
 #

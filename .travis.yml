@@ -3,13 +3,21 @@ sudo: false
 cache:
   directories:
   - container
+matrix:
+  include:
+  - os: linux
+    env: CMAKE_GENERATOR="Unix Makefiles" CMAKE_VERSION="latest" DEPLOY="1"
+  - os: linux
+    env: CMAKE_GENERATOR="Ninja" CMAKE_VERSION="latest"
+  - os: linux
+    env: CMAKE_GENERATOR="Unix Makefiles" CMAKE_VERSION="3.0"
+  - os: linux
+    env: CMAKE_GENERATOR="Ninja" CMAKE_VERSION="3.0"
+  - os: linux
+    env: CMAKE_GENERATOR="Unix Makefiles" CMAKE_VERSION="latest" COVERAGE="--use-cmake-coverage"
+  - os: osx
+    env: CMAKE_GENERATOR="Xcode" CMAKE_VERSION="latest"
 env:
-  matrix:
-  - CMAKE_GENERATOR="Unix Makefiles" CMAKE_VERSION="latest" DEPLOY="1"
-  - CMAKE_GENERATOR="Ninja" CMAKE_VERSION="latest"
-  - CMAKE_GENERATOR="Unix Makefiles" CMAKE_VERSION="3.0"
-  - CMAKE_GENERATOR="Ninja" CMAKE_VERSION="3.0"
-  - CMAKE_GENERATOR="Unix Makefiles" CMAKE_VERSION="latest" COVERAGE="--use-cmake-coverage"
   global:
   - secure: fRLfxvk6sOv8pyfua94R3MlDtFury6GNpy9PMuJsFVMdNKkkzHkbyGE/3qGjoD6ipDWbGb7QGziH6WWpiH7dFMv7i3oaVdQ6sQ3S2HDwY4HlyRJjZw01BPHcJ1ofcfa8oHa7HvKKkTPT/f4bkd3G4Ah1ntK1BGeXHyj402JsSBPHV2oeVvwyPQxUelKnnC+5Y2uGgyS7CDELKf9MAYBLcaog2VvOtAvrcIAWtzfq7bLw2rApfiffPQVPUQH9qed/n8CQwGmuWoxTxmevAhpWwRuijpHF86kCbrTQUZZKqbN99jVjjjo+yEck9kqQ900s56jwPkgg0ZZHbU+/JZINdhrrpdT0l0AEQD9+JU6SQga4aoXW8qfHBqo50leqPbuZ9nqCgbwZrmqrR+3LC9+D0O90at8XVGy1shDBF8hBdEQUWR0LmuiuVKrKPX5YkOtK+UwCYlLiOLjHkKZnXtYtK74gOdt46zw1TQtJf7AozRcOpKGe4O6ubDVvznYhW9JmQfkJyNdNK+nPVkXkJh4INO0ESp1Om6L8s/0/YxyA6of04uYzeuAmwJBXY0meXawSY5cMVSQkfAuczZ0WYXbExdKqPQM6r1BGKnQ+x8fLgi+y8uF1L3/M2BUI0oTr+GcYmCZmXaQo0WBhhuKCpTkmf1yL9e8G+8n+ra5zK4lyMCQ=
   - secure: j1uhHEegw+Cbfr/PIO6UKiv8xlMFYBukJQGCjnrGOQq/lpiXFwHNvqFRD8a1/i++8mo2wHZqWGborv+CzKGjEUN6XiQtMbePXWEdG/xQ1uDhrvzhlvknccurd47kqYD66Gwd/XOaU7qeTXHwFodetrw6zqkVl+U2JDhQIk1tkp4cOZ4WCpJIx593fG2jknYz3Lcwfy3m90dq5flU0KBlTDc7eKc8gTMWQKu42M+lYozLoyb2vqSHiU46D403Dj0Iw96aUywfqa/+aFtb/ZmvBja6tkv2cEPuC3TLV5N+QNbN/bcZn3lyY/ia83r+qTcciHYgOziUyPO2iHFlTTcJIYqL8K5dB9bUuGGpeDHBkXl+RKZnI8TEYkXYPFHZed6aTf1Y7DC0qssvhca8gBqXpRNZKezsMzHlLt84Cuv8FWSkBisGvVQJrmh/7pVBGkeGtgREUDZQeoEls76KI89iS7v3pugTjv8JyqzStxBr7OQnDfMWq//EEmdG56mevIZcfN8eh6h+zzVSVoeS2n1Nmsodzxfmm2RpXD6K5j7ANSnC9xd8rd8UGpkZq+RzJTSL0n76hcD/S1tMypxIDaL85IK2JO5Ps30XYgiBcmoWyAY+yiwZYSy2nEarXsMiRraf47BIEjNgVp59YichEpjPfAZOn2Yq8JeBQ39XbaNuuvk=
